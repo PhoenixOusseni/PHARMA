@@ -35,6 +35,11 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form method="POST" action="{{ route('gestion_cotisations.store') }}">
                             @csrf
                             <div class="row">
@@ -74,7 +79,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="mb-3">
                                         <label>Montant<span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control" id="montant_cotisation" name="montant_cotisation" required/>
+                                        <input type="number" class="form-control" id="montant_cotisation" name="montant_cotisation" readonly/>
                                     </div>
                                 </div>
                             </div>

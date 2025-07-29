@@ -1,3 +1,4 @@
+
 <!-- Modal -->
 <div class="modal fade" id="formUserBackdrop{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -19,7 +20,6 @@
                                             <div class="mb-3">
                                                 <label>Attribuer un role<span class="text-danger">*</span></label>
                                                 <select class="form-select" name="role_id" required>
-                                                    <option>Selectionner ici...</option>
                                                     @foreach (App\Models\Role::all() as $item)
                                                         <option value="{{ $item->id }}"
                                                             {{ $item->id == $item->role_id ? 'selected' : '' }}>
@@ -32,7 +32,6 @@
                                             <div class="mb-3">
                                                 <label>Région ordinale<span class="text-danger">*</span></label>
                                                 <select name="region_ordinal_id" class="form-select">
-                                                    <option>Selectionner ici...</option>
                                                     @foreach (App\Models\RegionOrdinal::all() as $item)
                                                         <option value="{{ $item->id }}">{{ $item->libelle }}
                                                         </option>

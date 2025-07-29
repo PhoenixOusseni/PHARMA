@@ -123,7 +123,7 @@ class UserController extends Controller
      */
     public function gest_account()
     {
-        $collection = User::where('statut', '=', 'Actif')->where('role_id', '=', 2)->orderBy('created_at', 'desc')->get();
+        $collection = User::where('statut', '=', 'Actif')->where('role_id', '=', 1)->orderBy('created_at', 'desc')->get();
 
         return view('admin.pages.membres.account', compact('collection'));
     }
@@ -135,7 +135,7 @@ class UserController extends Controller
      */
     public function gest_admin()
     {
-        $collection = User::where('statut', '=', 'Actif')->where('role_id', '=', 1)->orderBy('created_at', 'desc')->get();
+        $collection = User::where('statut', '=', 'Actif')->where('role_id', '=', 2)->orWhere('role_id', '=', 4)->orderBy('created_at', 'desc')->get();
 
         return view('admin.pages.membres.account_admin', compact('collection'));
     }

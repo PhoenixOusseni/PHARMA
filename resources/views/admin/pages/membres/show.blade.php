@@ -13,6 +13,11 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     </span>
                 </h3>
                 <!-- 👤 SECTION 1 : État Civil -->

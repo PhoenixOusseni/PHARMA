@@ -121,7 +121,7 @@ class AuthController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Inscription réussie. Veuillez patientez pour l\'activation de votre compte');
+        return redirect()->route('authentification')->with('success', 'Inscription réussie. Veuillez vous connecter pour completer vos informations (autres diplômes, expériences professionnelles)');
     }
 
     public function update(Request $request, $id)

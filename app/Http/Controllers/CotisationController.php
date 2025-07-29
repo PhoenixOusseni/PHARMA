@@ -7,6 +7,7 @@ use App\Models\Annee;
 use App\Models\Cotisation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CotisationController extends Controller
 {
@@ -51,8 +52,10 @@ class CotisationController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+
         // Retrieve all cotisations
-        $users = User::where('statut', '=', 'Actif')->orderBy('nom', 'desc')->get();
+        $users = User::where('statut', '=', 'Actif')->where('role_id', '!=', 3)->where('region_ordinal_id', '=', $user->region_ordinal_id)->orderBy('nom', 'desc')->get();
         $annees = Annee::where('statut', 'Activé')->get();
 
         return view('admin.pages.cotisations.create', compact('users', 'annees'));
@@ -74,6 +77,16 @@ class CotisationController extends Controller
         // ]);
 
         // Create a new cotisation record
+        // Vérifie si la cotisation existe déjà pour ce user et cette année
+        $exists = Cotisation::where('user_id', $request->user_id)
+            ->where('annee_id', $request->annee_id)
+            ->exists();
+
+        if ($exists) {
+            return redirect()->back()->with('error', 'Cette cotisation a déjà été enregistrée pour cet membre et cette année.');
+        }
+
+        // Si non existant, on crée
         Cotisation::create([
             'user_id' => $request->user_id,
             'date' => $request->date,

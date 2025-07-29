@@ -6,13 +6,17 @@
         <div class="card shadow-sm border border-success p-4">
             <div class="card-body p-5">
                 <div class="text-center mb-4">
-                    <img src="{{asset('assets/img/logo.jpg')}}" alt="Logo" width="60">
-                    <h4 class="mt-3 text-success">Connexion à l'espace membre</h4>
+                    <img src="{{ asset('assets/img/22_a9ad743c.jpg') }}" alt="Logo" class="img-fluid mb-3" style="width: 100px;">
+                    <h4 class="text-success">Connexion à l'espace membre</h4>
                     <p class="text-muted">Bienvenue, veuillez vous connecter</p>
                 </div>
 
                 @if(session('error'))
                     <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
                 <form method="POST" action="{{ route('login') }}">

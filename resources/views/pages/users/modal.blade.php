@@ -1,3 +1,4 @@
+
 <!-- Modal photo -->
 <div class="modal fade" id="photoBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -337,14 +338,16 @@
                         @csrf
                         <input type="text" name="user_id" value="{{ $finds->id }}" hidden>
                         <div class="mb-3">
-                            <label class="form-label">Natures diplomes</label>
-                            <input type="text" class="form-control" name="nature" required>
-                        </div>
-                        <div class="mb-3">
                             <label class="form-label">Date optention</label>
                             <input type="date" class="form-control" name="date_diplome" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Natures diplomes</label>
+                            <input type="text" class="form-control" name="nature" required>
+                        </div>
                         <hr>
+
                         <div class="mt-3">
                             <button type="submit" class="btn btn-success">Ajouter</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
@@ -371,12 +374,12 @@
                         @csrf
                         <input type="text" name="user_id" value="{{ $finds->id }}" hidden>
                         <div class="mb-3">
-                            <label class="form-label">Libelle de fonction</label>
-                            <input type="text" class="form-control" name="libelle" required>
-                        </div>
-                        <div class="mb-3">
                             <label class="form-label">Date d'occupation</label>
                             <input type="date" class="form-control" name="date" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Libelle de fonction</label>
+                            <input type="text" class="form-control" name="libelle" required>
                         </div>
                         <hr>
                         <div class="mt-3">
