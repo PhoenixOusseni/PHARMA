@@ -79,8 +79,7 @@ class CotisationController extends Controller
         // Create a new cotisation record
         // Vérifie si la cotisation existe déjà pour ce user et cette année
         $exists = Cotisation::where('user_id', $request->user_id)
-            ->where('annee_id', $request->annee_id)
-            ->exists();
+            ->where('annee_id', $request->annee_id)->exists();
 
         if ($exists) {
             return redirect()->back()->with('error', 'Cette cotisation a déjà été enregistrée pour cet membre et cette année.');
