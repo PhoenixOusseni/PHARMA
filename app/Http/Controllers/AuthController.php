@@ -75,6 +75,11 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'La date d\'obtention du diplôme ne peut pas être postérieure à aujourd\'hui.');
         }
 
+        // Vérifier si l'email existe déjà
+        if (User::where('email', $request->email)->exists()) {
+            return redirect()->back()->with('error', 'Cet email est déjà utilisé.');
+        }
+
         $user = new User();
         $user->nom = $request->nom;
         $user->prenom = $request->prenom;
