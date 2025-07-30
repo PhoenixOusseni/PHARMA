@@ -64,6 +64,7 @@ class AuthController extends Controller
     {
         // Calculer l'âge à partir de la date de naissance
         $date_naiss = Carbon::parse($request->date_naiss);
+        // Vérifier que l'utilisateur a au moins 25 ans
         $age = $date_naiss->diffInYears(Carbon::now());
 
         if ($age < 25) {

@@ -6,10 +6,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnneeController;
 use App\Http\Controllers\FonctionController;
-use App\Http\Controllers\LocationController;
 use App\Http\Controllers\CotisationController;
 use App\Http\Controllers\AutreDiplomeController;
-use App\Http\Controllers\CherchController;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
@@ -50,3 +48,5 @@ Route::post('deconnexion', [AuthController::class, 'logout'])->name('logout');
 Route::get('regions/{regionOrdinaleId}', [PageController::class, 'getRegions']);
 Route::get('provinces/{regionId}', [PageController::class, 'getProvinces']);
 Route::get('communes/{provinceId}', [PageController::class, 'getCommunes']);
+
+
