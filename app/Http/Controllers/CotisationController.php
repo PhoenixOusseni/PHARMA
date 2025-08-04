@@ -16,11 +16,20 @@ class CotisationController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         // Retrieve all cotisations
-        $cotisations = Cotisation::orderBy('created_at', 'desc')->get();
-        $total = $cotisations->sum('montant');
 
-        return view('admin.pages.cotisations.index', compact('cotisations', 'total'));
+        if ($user->role_id == 3) {
+            $cotisations = Cotisation::orderBy('created_at', 'desc')->get();
+            $total = $cotisations->sum('montant');
+
+            return view('admin.pages.cotisations.index', compact('cotisations', 'total'));
+        } else {
+            $cotisations = Cotisation::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
+            $total = $cotisations->sum('montant');
+
+            return view('admin.pages.cotisations.index', compact('cotisations', 'total'));
+        }
     }
 
     /**

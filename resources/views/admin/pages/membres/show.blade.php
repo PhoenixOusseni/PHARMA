@@ -211,7 +211,7 @@
                                     <div class="mb-3">
                                         <label>Categorie du membre<span class="text-danger">*</span></label>
                                         <select class="form-select" name="responsabilite_id" required>
-                                            <option>Selectionner ici...</option>
+                                            <option disabled>Selectionner ici...</option>
                                             @foreach (App\Models\Responsabilite::all() as $item)
                                                 <option value="{{ $item->id }}">{{ $item->libelle }}</option>
                                             @endforeach
@@ -278,7 +278,6 @@
                                                     <div class="mb-3">
                                                         <label>Période<span class="text-danger">*</span></label>
                                                         <select class="form-select" name="annee_id" required>
-                                                            <option value="">Selectionner ici...</option>
                                                             @foreach (App\Models\Annee::where('statut', '=', 'Activé')->get() as $item)
                                                                 <option value="{{ $item->id }}">{{ $item->annee }}</option>
                                                             @endforeach
@@ -288,7 +287,7 @@
                                                 <div class="col-lg-6 col-md-12">
                                                     <div class="mb-3">
                                                         <label>Somme<span class="text-danger">*</span></label>
-                                                        <input type="number" class="form-control" name="montant"
+                                                        <input type="number" class="form-control" name="montant_cotisation"
                                                             value="{{ $finds->montant_cotisation }}" readonly />
                                                     </div>
                                                 </div>

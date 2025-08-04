@@ -18,9 +18,7 @@
         <div style="border-bottom: 1px solid black;">
             <div class="d-flex col-md-12">
                 <div class="col-12">
-                    <h1 class="text-center mt-1" style="font-size: 20px;">
-                        <strong>ORDRE NATIONAL DES PHARMACIENS</strong>
-                    </h1>
+                    <img src="{{ asset('assets/img/logo_banner.png') }}" alt="">
                 </div>
             </div>
             <div>

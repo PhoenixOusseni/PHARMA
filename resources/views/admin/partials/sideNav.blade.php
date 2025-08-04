@@ -50,11 +50,11 @@
                         </a>
                         <div class="collapse" id="collapsePages345" data-bs-parent="#accordionSidenav">
                             <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                <a class="nav-link collapsed" href="{{ route('gestion_compte') }}">
-                                    <div class="nav-link-icon"><i data-feather="users"></i></div>
-                                    Gestion des comptes
-                                </a>
                                 <a class="nav-link collapsed" href="{{ route('gest_admin') }}">
+                                    <div class="nav-link-icon"><i data-feather="users"></i></div>
+                                    Gestion des administrateur
+                                </a>
+                                <a class="nav-link collapsed" href="{{ route('gestion_compte') }}">
                                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                                     Ajouter administrateur
                                 </a>

@@ -46,7 +46,7 @@
                                 <div class="col-lg-6 col-md-12">
                                     <div class="mb-3">
                                         <label>Membre <span class="text-danger">*</span></label>
-                                        <select name="user_id" id="userSelect" class="form-control js-example-basic-single" required>
+                                        <select name="user_id" id="userSelect" class="form-select js-example-basic-single" required>
                                             @foreach ($users as $item)
                                                 <option value="{{ $item->id }}"
                                                         data-code="{{ $item->code }}"
