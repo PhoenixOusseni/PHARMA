@@ -19,32 +19,44 @@
         <div class="container position-relative d-flex align-items-center justify-content-between">
             <a href="{{ url('dashboard') }}" class="logo d-flex align-items-center me-auto">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <img src="{{ asset('assets/img/logo_banner.png') }}" alt="Logo">
+                <img src="{{ asset('assets/img/22_a9ad743c.jpg') }}" alt="Logo" class="img-fluid"
+                    style="max-height: 60px;">
             </a>
             <nav id="navmenu" class="navmenu">
-                <ul>
-                    @if (Auth::user()->Role->id == 2 || Auth::user()->Role->id == 3 || Auth::user()->Role->id == 4)
-                        <li><a href="{{ route('admin') }}" class="active">Administration<br></a></li>
-                        <li><a href="{{ route('gestion_cotisations.index') }}">Cotisation</a></li>
-                    @endif
+                <div class="d-flex">
+                    <ul>
+                        <li style="margin-right: 25px;"><a href="{{ route('dashboard') }}">Accueil</a></li>
+                        @if (Auth::user()->Role->id == 2 || Auth::user()->Role->id == 3 || Auth::user()->Role->id == 4)
+                            <li style="margin-right: 25px;"><a href="{{ route('admin') }}" class="active">Administration<br></a></li>
+                        @endif
 
-                    @if (Auth::user()->statut == 'En cours')
-                        <li><a href="{{ route('errors_404') }}">Mes cotisations</a></li>
-                    @endif
+                        @if (Auth::user()->statut == 'En cours')
+                            <li style="margin-right: 25px;"><a href="{{ route('errors_404') }}">Mes cotisations</a></li>
+                        @endif
 
-                    @if (Auth::user()->statut == 'Actif')
-                        <li><a href="{{ route('mes_cotisations') }}">Mes cotisations</a></li>
-                    @endif
-                </ul>
+                        @if (Auth::user()->statut == 'Actif')
+                            <li style="margin-right: 25px;"><a href="{{ route('mes_cotisations') }}">Mes cotisations</a></li>
+                        @endif
+                    </ul>
+                    <ul>
+                        <li class="dropdown"><a href="#"><span><i class="fa fa-user"></i> &nbsp; </span><span>{{ Auth::user()->nom }}
+                                    {{ Auth::user()->prenom }}</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('compte') }}">Mon profil<br></a></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="bi bi-box-arrow-right"></i>&nbsp;&nbsp;{{ __('Se déconnecter') }}
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-            <a class="cta-btn d-none d-sm-block" href="{{ route('compte') }}">Mon profile</a>
-            <form method="POST" action="{{ route('logout') }}" style="border: none;">
-                @csrf
-                <button class="cta-btn d-none d-sm-block" type="submit">
-                    {{ __('Se déconnecter') }}
-                </button>
-            </form>
         </div>
     </div>
 </header>

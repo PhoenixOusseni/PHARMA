@@ -30,16 +30,7 @@
 
                 <div class="card mb-4">
                     <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
+                        {{-- Formulaire d'ajout --}}
                         <form method="POST" action="{{ route('gestion_cotisations.store') }}">
                             @csrf
                             <div class="row">
@@ -113,8 +104,12 @@
                                 </div>
                             </div>
                             <div class="mt-3">
-                                <button type="submit" class="btn btn-success">Enregistrer</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-success">
+                                    <i data-feather="save"></i>&nbsp; Enregistrer
+                                </button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                    <i data-feather="x"></i>&nbsp; Fermer
+                                </button>
                             </div>
                         </form>
                     </div>

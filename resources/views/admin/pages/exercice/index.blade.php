@@ -16,8 +16,10 @@
                 <div class="row align-items-center justify-content-between mt-4">
                     <div class="col-auto">
                         <nav class="nav">
-                            <a class="btn btn-warning" href="#"data-bs-toggle="modal"
-                                data-bs-target="#formUserBackdrop">Ajouter execice</a>
+                            <a class="btn btn-warning" href="#" data-bs-toggle="modal"
+                                data-bs-target="#formUserBackdrop">
+                                <i data-feather="plus"></i>&nbsp; Ajouter exercice
+                            </a>
                         </nav>
                     </div>
                 </div>
@@ -32,11 +34,6 @@
                 <!-- Tabbed dashboard card example-->
                 <div class="card mb-4">
                     <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
@@ -107,9 +104,13 @@
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <button type="submit" class="btn btn-success">Enregistrer</button>
+                                            <button type="submit" class="btn btn-success">
+                                                <i data-feather="save"></i>&nbsp; Enregistrer
+                                            </button>
                                             <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">Fermer</button>
+                                                data-bs-dismiss="modal">
+                                                <i data-feather="x"></i>&nbsp; Fermer
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

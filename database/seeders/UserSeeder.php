@@ -15,18 +15,18 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            // [
-            //     'matricule' => '123456',
-            //     'nom' => 'OUEDRAOGO',
-            //     'prenom' => 'Ousseni',
-            //     'telephone' => '123456789',
-            //     'role_id' => 1,
-            //     'section_id' => 1,
-            //     'region_ordinal_id' => 1,
-            //     'statut' => 'En cours',
-            //     'email' => 'membre1@gmail.com',
-            //     'password' => Hash::make('password'),
-            // ],
+            [
+                'matricule' => '123456',
+                'nom' => 'OUEDRAOGO',
+                'prenom' => 'Ousseni',
+                'telephone' => '123456789',
+                'role_id' => 1,
+                'section_id' => 1,
+                'region_ordinal_id' => 1,
+                'statut' => 'Actif',
+                'email' => 'membre@gmail.com',
+                'password' => Hash::make('password'),
+            ],
             // [
             //     'matricule' => '123456',
             //     'nom' => 'KY',

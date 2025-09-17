@@ -19,7 +19,7 @@
                 @csrf
                 <button class="btn btn-success p-3" type="submit">
                     <i data-feather="log-out"></i>
-                    {{ __('Se déconnecter') }}
+                    &nbsp;&nbsp; {{ __('Se déconnecter') }}
                 </button>
             </form>
         </li>

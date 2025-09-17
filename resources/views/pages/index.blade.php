@@ -7,7 +7,7 @@
             background-image: url('assets/img/bd-gestionmenbre.jpg');
             background-size: cover;
             background-position: center;
-            height: 100vh;
+            height: 85vh;
             color: white;
         }
         .overlay {
@@ -16,7 +16,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.671);
             /* Filtres : 0.3 à 0.6 souvent bien */
             z-index: 1;
         }
@@ -32,16 +32,16 @@
         <div class="overlay"></div>
         <div class="content">
             <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-                <h2 class="text-center text-light">ORDRE NATIONAL DES PHARMACIENS DU BURKINA FASO (ONPBF)</h2>
-                <p class="text-center">Plateforme de gestion des procédure administratives et des membres</p>
+                <h3 class="text-center text-light" style="font-size: 38px;">ORDRE NATIONAL DES PHARMACIENS DU BURKINA FASO (ONPBF)</h3>
+                <p class="text-center">Plateforme de gestion des procédure administratives et des membres</p>
             </div>
             <div class="d-flex justify-content-between mt-5">
-                <button type="button" class="btn btn-success p-3" onclick="window.location.href='{{ route('inscription') }}'"
-                    style="width: 46%">S'inscrire à
-                    l'ordre</button>
-                <button type="button" class="btn btn-success p-3"
-                    onclick="window.location.href='{{ route('authentification') }}'" style="width: 46%">Déjà membre
-                    ?</button>
+                <button type="button" class="btn btn-success p-3" onclick="window.location.href='{{ route('inscription') }}'" style="width: 46%">
+                    <i class="bi bi-person-plus"></i>&nbsp; S'inscrire à l'ordre
+                </button>
+                <button type="button" class="btn btn-success p-3" onclick="window.location.href='{{ route('authentification') }}'" style="width: 46%">
+                    <i class="bi bi-person"></i>&nbsp; Déjà membre ?
+                </button>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                     <h3>Comment devenir membre ?</h3>
                     <p>
-                        Une demande manuscrite  adressée  à monsieur le Président du conseil régional
+                        Une demande manuscrite adressée à monsieur le Président du conseil régional
                         de l'Ordre de la région dans laquelle il se propose d'exercer.
                     </p>
                     <p>

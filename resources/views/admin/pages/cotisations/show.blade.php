@@ -70,7 +70,7 @@
                         {{-- @if (Auth::user()->role !== 'Recouvrement') --}}
                             <a class="list-group-item list-group-item-action" href="{{ url('impression/print_cotisation/' . $finds->id) }}">
                                 <i class="fas fa-print fa-fw text-success me-2"></i>
-                                Imprimer le paiement
+                                &nbsp; Imprimer le paiement
                             </a>
                         {{-- @endif --}}
                         {{-- @if (Auth::user()->role == 'Privilege' || Auth::user()->role == 'Secretaire') --}}

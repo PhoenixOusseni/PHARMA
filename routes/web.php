@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
@@ -43,10 +44,25 @@ Route::post('add_user', [AuthController::class, 'add_user'])->name('register');
 Route::post('connexion', [AuthController::class, 'login'])->name('login');
 Route::post('deconnexion', [AuthController::class, 'logout'])->name('logout');
 
-
 //Les route api
 Route::get('regions/{regionOrdinaleId}', [PageController::class, 'getRegions']);
 Route::get('provinces/{regionId}', [PageController::class, 'getProvinces']);
 Route::get('communes/{provinceId}', [PageController::class, 'getCommunes']);
 
+// For Clear cache
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+});
 
+// For storage link
+Route::get("/link", function () {
+    $targetFolder = storage_path("app/public");
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+    symlink($targetFolder, $linkFolder);
+});
+
+// Route::get('/storage-link', function () {
+//     Artisan::call('storage:link');
+//     return "Storage link created";
+// });

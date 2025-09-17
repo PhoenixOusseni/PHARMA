@@ -33,11 +33,6 @@
                 <!-- Tabbed dashboard card example-->
                 <div class="card mb-4">
                     <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>

@@ -9,13 +9,17 @@
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
         }
+
         .step.active {
             display: block;
             opacity: 1;
         }
-        input.is-invalid, select.is-invalid {
+
+        input.is-invalid,
+        select.is-invalid {
             border-color: #dc3545;
         }
+
         .steps {
             position: relative;
         }
@@ -54,11 +58,13 @@
         }
 
         .content-background {
-            background-color: #f1f3f5; /* ou utilise la couleur exacte pipettée de l'image */
-            min-height: 100vh; /* pour occuper toute la hauteur */
-            padding: 20px; /* optionnel pour espacer un peu le contenu */
+            background-color: #f1f3f5;
+            /* ou utilise la couleur exacte pipettée de l'image */
+            min-height: 100vh;
+            /* pour occuper toute la hauteur */
+            padding: 20px;
+            /* optionnel pour espacer un peu le contenu */
         }
-
 
         .table th {
             background-color: #e9f5ee;
@@ -73,6 +79,7 @@
             border-radius: 0.3rem;
             transition: background-color 0.3s ease;
         }
+
         .page-link:hover {
             background-color: #e6f4ea;
             color: #14532d;
@@ -89,7 +96,6 @@
             vertical-align: middle;
         }
 
-
         .table-striped-custom tbody tr:nth-child(odd) {
             background-color: #f8f9fa !important;
         }
@@ -97,7 +103,7 @@
         .table-striped-custom tbody tr:hover {
             background-color: #e6f4ea !important;
         }
-</style>
+    </style>
 
 </head>
 
@@ -108,7 +114,20 @@
     <main class="main content-background py-4">
 
         @yield('content')
-
+        @if (session('success') || session('error'))
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+                <div class="toast align-items-center text-white {{ session('success') ? 'bg-success' : 'bg-danger' }} border-0 show"
+                    role="alert" aria-live="assertive" aria-atomic="true" id="statusToast">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ session('success') ?? session('error') }}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        @endif
     </main>
 
     @include('require.footer')
@@ -118,12 +137,19 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Preloader -->
-    <!-- <div id="preloader"></div> -->
-
     @include('layout.script')
     <!-- autres scripts ici -->
-    @yield('scripts')
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toastEl = document.getElementById('statusToast');
+            if (toastEl) {
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        });
+    </script>
+    @yield('scripts')
 
 </body>
 

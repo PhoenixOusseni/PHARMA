@@ -15,7 +15,7 @@
 
 <body style="height: 90vh;">
     <div class="container-fluid mt-1">
-        <div style="border-bottom: 1px solid black;">
+        <div class="mb-2" style="border-bottom: 1px solid rgb(107, 104, 104);">
             <div class="d-flex col-md-12">
                 <div class="col-12">
                     <img src="{{ asset('assets/img/logo_banner.png') }}" alt="">
@@ -29,11 +29,7 @@
             <h5>Ouagadougou, le {{ date('d-m-Y') }}</h5>
         </div>
         <section class="mt-4 mb-4">
-            <div class="row m-1">
-                <div class="col-6 pt-2">
-                    <h3 class="mb-3">Quittance N° : {{ $finds->code }}</h3>
-                </div>
-            </div>
+            <h3 class="mb-3 text-center">Quittance N° : {{ $finds->code }}</h3>
             <h4>Doit : {{ $finds->User->nom }} {{ $finds->User->prenom }}</h4>
         </section>
         <section>

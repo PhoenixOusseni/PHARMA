@@ -1,5 +1,5 @@
 
-<header id="header" class="header sticky-top">
+<header id="header" class="header sticky-top shadow-sm">
     <div class="topbar d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
@@ -20,7 +20,7 @@
         <div class="container position-relative d-flex align-items-center justify-content-between">
             <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <img src="{{asset('assets/img/logo_banner.png')}}" alt="Logo">
+                <img src="{{asset('assets/img/22_a9ad743c.jpg')}}" alt="Logo" class="img-fluid" style="max-height: 60px;">
             </a>
             <nav id="navmenu" class="navmenu">
                 <ul>
@@ -29,7 +29,9 @@
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-            <a class="cta-btn d-none d-sm-block" href="{{ route('authentification') }}">Mon compte</a>
+            <a class="cta-btn d-none d-sm-block" href="{{ route('authentification') }}">
+                <i class="bi bi-person"></i>&nbsp; Mon compte
+            </a>
         </div>
     </div>
-</header>
+</header><!-- End Header -->

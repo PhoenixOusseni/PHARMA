@@ -7,18 +7,6 @@
             <div class="card shadow-sm p-4">
                 <h3 class="text-center text-success mb-4">
                     Profil de l'utilisateur
-                    <span>
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                    </span>
                 </h3>
                 <!-- 👤 SECTION 1 : État Civil -->
                 <div class="mb-4">
@@ -322,9 +310,12 @@
                                                 </div>
                                             </div>
                                             <div class="mt-3">
-                                                <button type="submit" class="btn btn-success">Enregistrer</button>
-                                                <button type="button" class="btn btn-danger"
-                                                    data-bs-dismiss="modal">Fermer</button>
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa fa-save"></i>&nbsp;&nbsp; Enregistrer
+                                                </button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                                    <i class="fa fa-x"></i>&nbsp;&nbsp; Fermer
+                                                </button>
                                             </div>
                                         </form>
                                     </div>

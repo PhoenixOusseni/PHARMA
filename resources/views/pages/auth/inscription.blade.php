@@ -58,22 +58,7 @@
         }
     </style>
     <div class="container my-5">
-        <div class="card shadow-sm border border-success p-4">
-
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    <span><img src="{{ asset('assets/img/close.svg') }}" alt=""></span><span
-                        style="color: rgb(242, 96, 96)">Echec !</span>
-                    {{ session('error') }}
-                </div>
-            @endif
-
+        <div class="card p-4">
             <h2 class="mb-4 text-center text-success">Créer un compte</h2>
 
             <!-- Étapes visuelles -->
@@ -93,6 +78,10 @@
                 <div class="step-item flex-fill" id="step-nav-5">
                     <div class="step-circle">4</div>
                     <small class="step-label">Résumé</small>
+                </div>
+                <div class="step-item flex-fill" id="step-nav-5">
+                    <div class="step-circle">5</div>
+                    <small class="step-label">Paiement</small>
                 </div>
             </div>
 
@@ -125,7 +114,8 @@
                         </div>
                         <div class="col-md-3">
                             <label>Confirmer mot de passe<span class="text-danger">*</span></label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+                            <input type="password" id="password_confirmation" name="password_confirmation"
+                                class="form-control" required>
                         </div>
                     </div>
                     <div class="row p-2 mb-3" style="background: #eceef1; border-radius: 5px;">
@@ -173,12 +163,12 @@
                             <input type="text" name="nom_jeune_fille" class="form-control">
                         </div>
                         <div class="col-md-6">
-                        <label>Date de naissance <span class="text-danger">*</span></label>
-                        <input type="date" id="dateNaissance" name="date_naiss" class="form-control" required>
-                        <div id="dateNaissanceError" style="color:red; display:none; margin-top:5px;">
-                            Vous devez avoir au moins 25 ans.
+                            <label>Date de naissance <span class="text-danger">*</span></label>
+                            <input type="date" id="dateNaissance" name="date_naiss" class="form-control" required>
+                            <div id="dateNaissanceError" style="color:red; display:none; margin-top:5px;">
+                                Vous devez avoir au moins 25 ans.
+                            </div>
                         </div>
-                    </div>
 
                     </div>
                     <div class="row mb-3">
@@ -220,7 +210,9 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <button type="button" class="btn btn-success" onclick="nextStep(2)">Suivant</button>
+                        <button type="button" class="btn btn-success" onclick="nextStep(2)">
+                            Suivant &nbsp;&nbsp; <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -237,11 +229,12 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label>Téléphone <span class="text-danger">*</span></label>
-                        <input type="text" id="telephone" name="telephone" class="form-control" required oninput="validatePhone()">
-                        <div class="invalid-feedback">Veuillez entrer un numéro valide (8 à 15 chiffres).</div>
-                    </div>
+                        <div class="col-md-6">
+                            <label>Téléphone <span class="text-danger">*</span></label>
+                            <input type="text" id="telephone" name="telephone" class="form-control" required
+                                oninput="validatePhone()">
+                            <div class="invalid-feedback">Veuillez entrer un numéro valide (8 à 15 chiffres).</div>
+                        </div>
 
                         <div class="col-md-6">
                             <label>N° Matricule<span class="text-danger"><em> (Pour les fonctionnaires)
@@ -251,8 +244,12 @@
 
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">Précédent</button>
-                        <button type="button" class="btn btn-success" onclick="nextStep(3)">Suivant</button>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(1)">
+                            <i class="fas fa-arrow-left"></i> &nbsp;&nbsp; Précédent
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="nextStep(3)">
+                            Suivant &nbsp;&nbsp; <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -309,8 +306,12 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Précédent</button>
-                        <button type="button" class="btn btn-success" onclick="nextStep(4)">Suivant</button>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
+                            <i class="fas fa-arrow-left"></i> &nbsp;&nbsp; Précédent
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="nextStep(4)">
+                            Suivant &nbsp;&nbsp; <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -349,8 +350,80 @@
                             l'administration
                             et vous recevrez une notification par email une fois votre compte activé.</em></p>
                     <div class="d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Precedant</button>
-                        <button type="submit" class="btn btn-success">Valider l'inscription</button>
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">
+                            <i class="fas fa-arrow-left"></i> &nbsp;&nbsp; Précédent
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="nextStep(5)">
+                            Passer au paiement &nbsp;&nbsp; <i class="fas fa-dollar-sign"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Étape 5 - Paiement (optionnelle) -->
+                <div id="step-5" class="step">
+                    <!-- Header -->
+                    <div class="header-section text-center bg-success text-white p-3 mb-4">
+                        <h4 class="mb-1">Résumé de votre demande</h4>
+                        <p class="mb-0 text-warning">Le délai de traitement est de 2 jours ouvrables à compter de l'heure
+                            de paiement.</p>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="mb-3 text-center">
+                                <h5 class="text-success">Operateur</h5>
+                                <img src="{{ asset('assets/img/orange_money.png') }}" alt="Operateur" class="img-fluid">
+                            </div>
+                            <div class="mb-3 text-center">
+                                <p>Taper <strong>*144*4*146*15000#</strong> pour generer le code OTP</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label class="small" for="code_otp">Code OTP :</label>
+                                    <input type="number" id="code_otp" name="code_otp" class="form-control"
+                                        placeholder="Entrez le code OTP">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="small" for="numero_demande">Numéro ayant servi pour le paiement :</label>
+                                    <input class="form-control" type="number" id="numero_demande" name="numero_demande"
+                                        placeholder="Entrez le numéro de demande">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-2">
+                                <div class="col-md-4 fw-bold">Nom :</div>
+                                <div class="col-md-8">OUEDRAOGO</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 fw-bold">Prénom :</div>
+                                <div class="col-md-8">OUSSENI</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 fw-bold">Date de naissance :</div>
+                                <div class="col-md-8">03-08-1989</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 fw-bold">Statut paiement :</div>
+                                <div class="col-md-8">
+                                    <span class="status-badge bg-warning">NON PAYÉ</span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-4 fw-bold">État demande :</div>
+                                <div class="col-md-8">
+                                    <span class="status-badge bg-warning">En attente de paiement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(4)">
+                            <i class="fas fa-arrow-left"></i> &nbsp;&nbsp; Précédent
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            Effectuer le paiement &nbsp;&nbsp; <i class="fas fa-dollar-sign"></i>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -409,20 +482,22 @@
 
     <script>
         function updateStepNav(step) {
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 5; i++) {
                 const el = document.getElementById('step-nav-' + i);
                 if (el) {
-                    el.classList.toggle('active', i === step);
+                    el.classList.toggle('active', i === step); // active uniquement pour l'étape courante
                 }
             }
         }
 
         function updateProgressBar(step) {
             const bar = document.getElementById('progress-bar');
-            const labels = ['Étape 1 / 4', 'Étape 2 / 4', 'Étape 3 / 4', 'Étape 4 / 4'];
-            const widths = ['15%', '40%', '65%', '100%'];
-            bar.style.width = widths[step - 1];
-            bar.innerText = labels[step - 1];
+            const labels = ['Étape 1 / 5', 'Étape 2 / 5', 'Étape 3 / 5', 'Étape 4 / 5',
+                'Étape 5 / 5'
+            ]; // Met à jour pour 5 étapes
+            const widths = ['15%', '40%', '65%', '85%', '100%']; // Met à jour pour 5 étapes
+            bar.style.width = widths[step - 1]; // Met à jour pour 5 étapes
+            bar.innerText = labels[step - 1]; // Met à jour pour 5 étapes
         }
 
         function showStep(step) {
@@ -475,144 +550,147 @@
         }
 
         function passwordsMatch() {
-    const pwd  = document.querySelector('[name="password"]');
-    const pwd2 = document.querySelector('[name="password_confirmation"]');
-    const msg  = document.getElementById('pwd-msg'); // <div id="pwd-msg" ...>
+            const pwd = document.querySelector('[name="password"]');
+            const pwd2 = document.querySelector('[name="password_confirmation"]');
+            const msg = document.getElementById('pwd-msg'); // <div id="pwd-msg" ...>
 
-    // Adapte les règles si besoin (longueur min, etc.)
-    const ok = pwd && pwd2 && pwd.value.trim() !== '' && pwd.value === pwd2.value && pwd.value.length >= 8;
+            // Adapte les règles si besoin (longueur min, etc.)
+            const ok = pwd && pwd2 && pwd.value.trim() !== '' && pwd.value === pwd2.value && pwd.value.length >= 8;
 
-    if (!ok) {
-        if (msg) msg.classList.remove('d-none');
-        pwd?.classList.add('is-invalid');
-        pwd2?.classList.add('is-invalid');
-    } else {
-        if (msg) msg.classList.add('d-none');
-        pwd?.classList.remove('is-invalid');
-        pwd2?.classList.remove('is-invalid');
-    }
-    return ok;
-}
-
-function nextStep(step) {
-    const prevStep = step - 1;
-
-    // Validation générique des champs requis du step courant
-    const inputs = document.querySelectorAll(`#step-${prevStep} input[required], #step-${prevStep} select[required], #step-${prevStep} textarea[required]`);
-    let valid = true;
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            input.classList.add('is-invalid');
-            valid = false;
-        } else {
-            input.classList.remove('is-invalid');
+            if (!ok) {
+                if (msg) msg.classList.remove('d-none');
+                pwd?.classList.add('is-invalid');
+                pwd2?.classList.add('is-invalid');
+            } else {
+                if (msg) msg.classList.add('d-none');
+                pwd?.classList.remove('is-invalid');
+                pwd2?.classList.remove('is-invalid');
+            }
+            return ok;
         }
-    });
 
-    // ✅ Contrôle spécifique mots de passe si on QUITTE l'étape 1
-    if (prevStep === 1) {
-        if (!passwordsMatch() || !validateDateNaissance()) {
-            valid = false;
+        function nextStep(step) {
+            const prevStep = step - 1;
+
+            // Validation générique des champs requis du step courant
+            const inputs = document.querySelectorAll(
+                `#step-${prevStep} input[required], #step-${prevStep} select[required], #step-${prevStep} textarea[required]`
+            );
+            let valid = true;
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valid = false;
+                } else {
+                    input.classList.remove('is-invalid');
+                }
+            });
+
+            // ✅ Contrôle spécifique mots de passe si on QUITTE l'étape 1
+            if (prevStep === 1) {
+                if (!passwordsMatch() || !validateDateNaissance()) {
+                    valid = false;
+                }
+            }
+
+            // Vérification spécifique du téléphone au Step 2
+            if (prevStep === 2 && !validatePhone()) {
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Ton récap quand on arrive à l'étape 4
+            if (step === 4) {
+                const getVal = (selector, fallback = '') => document.querySelector(selector)?.value ?? fallback;
+                const getText = (selector, fallback = '') => document.querySelector(selector)?.textContent ?? fallback;
+
+                document.getElementById('recap-nom').innerText = getVal('[name="nom"]');
+                document.getElementById('recap-prenom').innerText = getVal('[name="prenom"]');
+                document.getElementById('recap-telephone').innerText = getVal('[name="telephone"]');
+                document.getElementById('recap-date_naiss').innerText = getVal('[name="date_naiss"]');
+                document.getElementById('recap-lieu_naiss').innerText = getVal('[name="lieu_naiss"]');
+                document.getElementById('recap-nationalite').innerText = getVal('[name="nationalite"]');
+                document.getElementById('recap-email').innerText = getVal('[name="email"]');
+                document.getElementById('recap-adresse').innerText = getVal('[name="adresse"]');
+                document.getElementById('recap-domicile').innerText = getVal('[name="domicile"]');
+                document.getElementById('recap-region_ordinal_id').innerText = getText(
+                    '[name="region_ordinal_id"] option:checked');
+                document.getElementById('recap-region_id').innerText = getText('[name="region_id"] option:checked');
+                document.getElementById('recap-province_id').innerText = getText('[name="province_id"] option:checked');
+                document.getElementById('recap-commune_id').innerText = getText('[name="commune_id"] option:checked');
+                document.getElementById('recap-section_id').innerText = getText('[name="section_id"] option:checked');
+                // ... ajoute les autres si besoin
+            }
+
+            showStep(step);
         }
-    }
 
-   // Vérification spécifique du téléphone au Step 2
-   if (prevStep === 2 && !validatePhone()) {
-        valid = false;
-    }
+        // (optionnel) validation live pendant la saisie
+        document.addEventListener('DOMContentLoaded', () => {
+            const pwd = document.querySelector('[name="password"]');
+            const pwd2 = document.querySelector('[name="password_confirmation"]');
+            if (pwd && pwd2) {
+                pwd.addEventListener('input', passwordsMatch);
+                pwd2.addEventListener('input', passwordsMatch);
+            }
+        });
 
-    if (!valid) return;
+        function validatePhone() {
+            const telInput = document.getElementById("telephone");
+            const telValue = telInput.value.trim();
+            const telRegex = /^[0-9]{8,15}$/; // entre 8 et 15 chiffres
 
-    // Ton récap quand on arrive à l'étape 4
-    if (step === 4) {
-        const getVal = (selector, fallback = '') => document.querySelector(selector)?.value ?? fallback;
-        const getText = (selector, fallback = '') => document.querySelector(selector)?.textContent ?? fallback;
-
-        document.getElementById('recap-nom').innerText                 = getVal('[name="nom"]');
-        document.getElementById('recap-prenom').innerText              = getVal('[name="prenom"]');
-        document.getElementById('recap-telephone').innerText           = getVal('[name="telephone"]');
-        document.getElementById('recap-date_naiss').innerText          = getVal('[name="date_naiss"]');
-        document.getElementById('recap-lieu_naiss').innerText          = getVal('[name="lieu_naiss"]');
-        document.getElementById('recap-nationalite').innerText         = getVal('[name="nationalite"]');
-        document.getElementById('recap-email').innerText               = getVal('[name="email"]');
-        document.getElementById('recap-adresse').innerText             = getVal('[name="adresse"]');
-        document.getElementById('recap-domicile').innerText            = getVal('[name="domicile"]');
-        document.getElementById('recap-region_ordinal_id').innerText   = getText('[name="region_ordinal_id"] option:checked');
-        document.getElementById('recap-region_id').innerText           = getText('[name="region_id"] option:checked');
-        document.getElementById('recap-province_id').innerText         = getText('[name="province_id"] option:checked');
-        document.getElementById('recap-commune_id').innerText          = getText('[name="commune_id"] option:checked');
-        document.getElementById('recap-section_id').innerText          = getText('[name="section_id"] option:checked');
-        // ... ajoute les autres si besoin
-    }
-
-    showStep(step);
-}
-
-// (optionnel) validation live pendant la saisie
-document.addEventListener('DOMContentLoaded', () => {
-    const pwd  = document.querySelector('[name="password"]');
-    const pwd2 = document.querySelector('[name="password_confirmation"]');
-    if (pwd && pwd2) {
-        pwd.addEventListener('input', passwordsMatch);
-        pwd2.addEventListener('input', passwordsMatch);
-    }
-});
-
-function validatePhone() {
-    const telInput = document.getElementById("telephone");
-    const telValue = telInput.value.trim();
-    const telRegex = /^[0-9]{8,15}$/; // entre 8 et 15 chiffres
-
-    if (!telRegex.test(telValue)) {
-        telInput.classList.add("is-invalid");
-        return false;
-    } else {
-        telInput.classList.remove("is-invalid");
-        return true;
-    }
-}
+            if (!telRegex.test(telValue)) {
+                telInput.classList.add("is-invalid");
+                return false;
+            } else {
+                telInput.classList.remove("is-invalid");
+                return true;
+            }
+        }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('telephone').addEventListener('input', validatePhone);
-});
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('telephone').addEventListener('input', validatePhone);
+        });
 
-function validateDateNaissance() {
-    const dateInput = document.getElementById("dateNaissance");
-    const dateValue = dateInput.value.trim();
+        function validateDateNaissance() {
+            const dateInput = document.getElementById("dateNaissance");
+            const dateValue = dateInput.value.trim();
 
-    if (!dateValue) {
-        // Champ vide → invalide
-        dateInput.classList.add("is-invalid");
-        return false;
-    }
+            if (!dateValue) {
+                // Champ vide → invalide
+                dateInput.classList.add("is-invalid");
+                return false;
+            }
 
-    const dateNaissance = new Date(dateValue);
-    if (isNaN(dateNaissance.getTime())) {
-        // Date invalide
-        dateInput.classList.add("is-invalid");
-        return false;
-    }
+            const dateNaissance = new Date(dateValue);
+            if (isNaN(dateNaissance.getTime())) {
+                // Date invalide
+                dateInput.classList.add("is-invalid");
+                return false;
+            }
 
-    const today = new Date();
-    let age = today.getFullYear() - dateNaissance.getFullYear();
-    const m = today.getMonth() - dateNaissance.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < dateNaissance.getDate())) {
-        age--;
-    }
+            const today = new Date();
+            let age = today.getFullYear() - dateNaissance.getFullYear();
+            const m = today.getMonth() - dateNaissance.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dateNaissance.getDate())) {
+                age--;
+            }
 
-    if (age < 25) {
-        dateInput.classList.add("is-invalid");
-        return false;
-    } else {
-        dateInput.classList.remove("is-invalid");
-        return true;
-    }
-}
+            if (age < 25) {
+                dateInput.classList.add("is-invalid");
+                return false;
+            } else {
+                dateInput.classList.remove("is-invalid");
+                return true;
+            }
+        }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('dateNaissance').addEventListener('input', validateDateNaissance);
-});
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('dateNaissance').addEventListener('input', validateDateNaissance);
+        });
 
 
         function prevStep(step) {
@@ -669,7 +747,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const dateNaissanceInput = document.getElementById('dateNaissance');
             const errorDiv = document.getElementById('dateNaissanceError');
 
@@ -701,6 +779,5 @@ document.addEventListener('DOMContentLoaded', () => {
             dateNaissanceInput.addEventListener('change', verifierAge);
             dateNaissanceInput.addEventListener('input', verifierAge);
         });
-</script>
-
+    </script>
 @endsection

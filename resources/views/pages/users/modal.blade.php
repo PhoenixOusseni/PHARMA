@@ -1,4 +1,3 @@
-
 <!-- Modal photo -->
 <div class="modal fade" id="photoBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -28,7 +27,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!-- Modal edit profile -->
@@ -77,43 +75,45 @@
                     </div>
 
                     <!-- Formulaire -->
-                    <form method="POST" action="{{ url('update_profil/' . $finds->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ url('update_profil/' . $finds->id) }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <!-- Étape 1 -->
                         <div id="step-1" class="step active">
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label>Nom</label>
-                                    <input type="text" name="nom" class="form-control" value="{{ $finds->nom }}"
-                                        required>
+                                    <input type="text" name="nom" class="form-control"
+                                        value="{{ $finds->nom }}" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Prénom(s)</label>
-                                    <input type="text" name="prenom" class="form-control" value="{{ $finds->prenom }}"
-                                        required>
+                                    <input type="text" name="prenom" class="form-control"
+                                        value="{{ $finds->prenom }}" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label>Nom de jeune fille</label>
-                                    <input type="text" name="nom_jeune_fille" class="form-control" value="{{ $finds->nom_jeune_fille }}">
+                                    <input type="text" name="nom_jeune_fille" class="form-control"
+                                        value="{{ $finds->nom_jeune_fille }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Date de naissance</label>
-                                    <input type="date" name="date_naiss" class="form-control" value="{{ $finds->date_naiss }}"
-                                        required>
+                                    <input type="date" name="date_naiss" class="form-control"
+                                        value="{{ $finds->date_naiss }}" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label>Lieu de naissance</label>
-                                    <input type="text" name="lieu_naiss" class="form-control" value="{{ $finds->lieu_naiss }}"
-                                        required>
+                                    <input type="text" name="lieu_naiss" class="form-control"
+                                        value="{{ $finds->lieu_naiss }}" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Nationalité</label>
-                                    <input type="text" name="nationalite" class="form-control" value="{{ $finds->nationalite }}"
-                                        required>
+                                    <input type="text" name="nationalite" class="form-control"
+                                        value="{{ $finds->nationalite }}" required>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -154,35 +154,37 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label>Adresse Permanente</label>
-                                    <input type="text" name="adresse" class="form-control" value="{{ $finds->adresse }}">
+                                    <input type="text" name="adresse" class="form-control"
+                                        value="{{ $finds->adresse }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Domicile</label>
-                                    <input type="text" name="domicile" class="form-control" value="{{ $finds->domicile }}">
+                                    <input type="text" name="domicile" class="form-control"
+                                        value="{{ $finds->domicile }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label>Email</label>
-                                    <input type="email" name="email" class="form-control" value="{{ $finds->email }}"
-                                        required>
+                                    <input type="email" name="email" class="form-control"
+                                        value="{{ $finds->email }}" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Télephone</label>
-                                    <input type="text" name="telephone" class="form-control" value="{{ $finds->telephone }}"
-                                        required>
+                                    <input type="text" name="telephone" class="form-control"
+                                        value="{{ $finds->telephone }}" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label>N° Matricule</label>
-                                    <input type="text" name="matricule" class="form-control" value="{{ $finds->matricule }}"
-                                        required>
+                                    <input type="text" name="matricule" class="form-control"
+                                        value="{{ $finds->matricule }}" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Lieu d'exercice</label>
-                                    <input type="text" name="lieu_exercice" class="form-control" value="{{ $finds->lieu_exercice }}"
-                                        required>
+                                    <input type="text" name="lieu_exercice" class="form-control"
+                                        value="{{ $finds->lieu_exercice }}" required>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -201,17 +203,20 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Date d'obtention</label>
-                                    <input type="date" name="date_diplome" class="form-control" value="{{ $finds->date_diplome }}">
+                                    <input type="date" name="date_diplome" class="form-control"
+                                        value="{{ $finds->date_diplome }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label>Institution ayant délivré</label>
-                                    <input type="text" name="inst_delivre" class="form-control" value="{{ $finds->inst_delivre }}">
+                                    <input type="text" name="inst_delivre" class="form-control"
+                                        value="{{ $finds->inst_delivre }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Lieu de délivrance</label>
-                                    <input type="text" name="lieu_delivrance" class="form-control" value="{{ $finds->lieu_delivrance }}">
+                                    <input type="text" name="lieu_delivrance" class="form-control"
+                                        value="{{ $finds->lieu_delivrance }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -231,14 +236,16 @@
                                         <br>
                                         <span>2. un extrait d'un casier judiciaire datant de moins de trois mois</span>
                                         <br>
-                                        <span>3. Une copie légalisée du diplôme de pharmacien ou l'attestation de diplôme de docteur en pharmacie</span>
+                                        <span>3. Une copie légalisée du diplôme de pharmacien ou l'attestation de
+                                            diplôme de docteur en pharmacie</span>
                                         <br>
                                         <span>4. Un certificat de nationalité</span>
                                         <br>
                                         <span>5.Un certificat d'aptitude médical</span>
                                     </p>
                                     <p class="text-danger text-italic">
-                                        <strong>Note :</strong> Les pièces jointes doivent être au format PDF et ne pas dépasser 2 Mo.
+                                        <strong>Note :</strong> Les pièces jointes doivent être au format PDF et ne pas
+                                        dépasser 2 Mo.
                                     </p>
                                 </div>
                             </div>
@@ -387,6 +394,80 @@
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal cotisation -->
+<div class="modal fade" id="cotisationUserBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Paiement de cotisation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form method="POST" action="">
+                                    @csrf
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <div class="mb-3 text-center">
+                                                <h5 class="text-success">Operateur</h5>
+                                                <img src="{{ asset('assets/img/orange_money.png') }}" alt="Operateur"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="mb-3 text-center">
+                                                <p>Taper <strong>*144*4*146*15000#</strong> pour generer le code OTP</p>
+                                            </div>
+                                            <div class="row mb-3" style="background: #caf3e054">
+                                                <div class="col-md-12 mb-3">
+                                                    <label class="small">Montant cotisation :</label>
+                                                    <input type="text" name="code_otp" class="form-control"
+                                                        value="{{ $finds->montant_cotisation }}" readonly disabled>
+                                                </div>
+                                                <div class="col-md-12 mb-2">
+                                                    <label class="small">Periode :</label>
+                                                    <select name="annee_id" class="form-select">
+                                                        @foreach (App\Models\Annee::where('statut', 'Activé')->get() as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->annee }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label class="small" for="code_otp">Code OTP :</label>
+                                                    <input type="number" id="code_otp" name="code_otp"
+                                                        class="form-control" placeholder="Entrez le code OTP">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="small" for="numero_demande">Numéro ayant servi pour le paiement :</label>
+                                                    <input class="form-control" type="number" id="numero_demande"
+                                                        name="numero_demande" placeholder="Entrez le numéro de demande">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-success">
+                                            Effectuer le paiement &nbsp;&nbsp; <i class="fas fa-dollar-sign"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                            <i class="fas fa-x"></i> &nbsp;&nbsp; Fermer
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

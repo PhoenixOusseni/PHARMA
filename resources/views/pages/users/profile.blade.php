@@ -171,6 +171,7 @@
                 <div class="d-flex justify-content-start gap-2 mt-4">
                     <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#editBackdrop">Modifier
                         mon compte</button>
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#cotisationUserBackdrop">💰 Faire une cotisations</button>
                 </div>
             </div>
         </div>
