@@ -126,4 +126,15 @@ class PageController extends Controller
     {
         return response()->json(Commune::where('province_id', $provinceId)->get());
     }
+
+    public function verify_page()
+    {
+        return view('pages.verify_account');
+    }
+
+    public function complete_info($id)
+    {
+        $userFind = User::findOrFail($id);
+        return view('pages.users.complet_infos', compact('userFind'));
+    }
 }

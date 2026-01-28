@@ -49,6 +49,13 @@ Route::get('regions/{regionOrdinaleId}', [PageController::class, 'getRegions']);
 Route::get('provinces/{regionId}', [PageController::class, 'getProvinces']);
 Route::get('communes/{provinceId}', [PageController::class, 'getCommunes']);
 
+Route::get('verify_user_account_page', [PageController::class, 'verify_page'])->name('verify_page');
+Route::post('verify_user_account', [AuthController::class, 'verify_account'])->name('verify_account');
+
+// complete the users information after verification
+Route::get('complete_user_info/{id}', [PageController::class, 'complete_info'])->name('complete_info');
+Route::put('complete_user_info_post/{id}', [AuthController::class, 'complete_info_post'])->name('complete_info_post');
+
 // For Clear cache
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -61,8 +68,3 @@ Route::get("/link", function () {
     $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
     symlink($targetFolder, $linkFolder);
 });
-
-// Route::get('/storage-link', function () {
-//     Artisan::call('storage:link');
-//     return "Storage link created";
-// });

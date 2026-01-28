@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('matricule')->nullable();
             $table->string('photo')->nullable();
 
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
 
             $table->string('telephone')->nullable();
@@ -47,6 +47,7 @@ return new class extends Migration
             $table->foreignId('province_id')->nullable()->constrained('provinces')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('commune_id')->nullable()->constrained('communes')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('responsabilite_id')->nullable()->constrained('responsabilites')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('structure')->nullable();
 
             $table->string('password')->nullable();
             $table->rememberToken();

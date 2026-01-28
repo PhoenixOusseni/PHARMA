@@ -13,7 +13,7 @@ class AnneeSeeder extends Seeder
      */
     public function run(): void
     {
-         DB::table('annees')->insert([
+        DB::table('annees')->insert([
             [
                 'annee' => 2025,
                 'statut' => 'Activé',

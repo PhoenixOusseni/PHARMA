@@ -34,9 +34,11 @@ class AuthController extends Controller
         }
 
         // Échec : on retourne avec un message sans révéler la cause exacte
-        return back()->withErrors([
-            'email' => 'Les identifiants sont invalides.',
-        ])->onlyInput('email');
+        return back()
+            ->withErrors([
+                'email' => 'Les identifiants sont invalides.',
+            ])
+            ->onlyInput('email');
     }
 
     /**
@@ -139,15 +141,16 @@ class AuthController extends Controller
         $user->nom_jeune_fille = $request->nom_jeune_fille;
         $user->matricule = $request->matricule;
         $user->email = $request->email;
+
         $user->telephone = $request->telephone;
         $user->date_naiss = $request->date_naiss;
         $user->lieu_naiss = $request->lieu_naiss;
         $user->nationalite = $request->nationalite;
+        $num_rccm = $request->num_rccm;
 
         $user->situation_matrimoniale = $request->situation_matrimoniale;
         $user->adresse = $request->adresse;
         $user->domicile = $request->domicile;
-        $user->num_rccm = $request->num_rccm;
         $user->lieu_exercice = $request->lieu_exercice;
 
         $user->region_ordinal_id = $request->region_ordinal_id;
@@ -182,5 +185,107 @@ class AuthController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Mise à jour réussie.');
+    }
+
+    // Verify user account
+    public function verify_account(Request $request) {
+        $request->validate([
+            'nom' => 'required|string',
+            'code' => 'required|string',
+        ]);
+
+        $user = User::where('nom', $request->nom)
+                    ->where('code', $request->code)->first();
+
+        if ($user) {
+            // Compte trouvé, connecter l'utilisateur automatiquement
+            Auth::login($user);
+            $request->session()->regenerate();
+
+            return redirect()->route('complete_info', ['id' => $user->id])->with('success', 'Compte vérifié avec succès. Veuillez compléter vos informations.');
+        } else {
+            // Compte non trouvé, rediriger vers la page de vérification avec un message d'erreur
+            return redirect()->back()->with('error', 'Aucun compte trouvé avec les informations fournies. Veuillez réessayer.');
+        }
+    }
+
+    // Complete user information after verification
+    public function complete_info_post(Request $request, $id) {
+        $user = User::findOrFail($id);
+
+        // Calculer l'âge à partir de la date de naissance
+        if ($request->date_naiss) {
+            $date_naiss = Carbon::parse($request->date_naiss);
+            $age = $date_naiss->diffInYears(Carbon::now());
+
+            if ($age < 25) {
+                return redirect()->back()->with('error', 'Vous devez avoir au moins 25 ans.');
+            }
+        }
+
+        // Vérifier que la date_diplome ne dépasse pas la date d'aujourd'hui
+        if ($request->date_diplome && Carbon::parse($request->date_diplome)->gt(Carbon::today())) {
+            return redirect()->back()->with('error', 'La date d\'obtention du diplôme ne peut pas être postérieure à aujourd\'hui.');
+        }
+
+        // Mise à jour des informations personnelles
+        $user->nom = $request->nom;
+        $user->prenom = $request->prenom;
+        $user->nom_jeune_fille = $request->nom_jeune_fille;
+        $user->matricule = $request->matricule;
+        $user->email = $request->email;
+        $user->telephone = $request->telephone;
+        $user->date_naiss = $request->date_naiss;
+        $user->lieu_naiss = $request->lieu_naiss;
+        $user->nationalite = $request->nationalite;
+        $user->situation_matrimoniale = $request->situation_matrimoniale;
+
+        // Mise à jour de l'adresse
+        $user->adresse = $request->adresse;
+        $user->domicile = $request->domicile;
+
+        // Mise à jour de la localisation
+        $user->region_ordinal_id = $request->region_ordinal_id;
+        $user->region_id = $request->region_id;
+        $user->commune_id = $request->commune_id;
+        $user->section_id = $request->section_id;
+        $user->province_id = $request->province_id;
+
+        // Mise à jour du diplôme
+        $user->date_diplome = $request->date_diplome;
+        $user->inst_delivre = $request->inst_delivre;
+        $user->lieu_delivrance = $request->lieu_delivrance;
+
+        // Gestion des fichiers uploadés
+        if ($request->hasFile('file')) {
+            // Supprimer l'ancien fichier si existe
+            if ($user->file && Storage::disk('public')->exists($user->file)) {
+                Storage::disk('public')->delete($user->file);
+            }
+            $path = $request->file('file')->store('pieces_jointes', 'public');
+            $user->file = $path;
+        }
+
+        if ($request->hasFile('diplome')) {
+            // Supprimer l'ancien diplôme si existe
+            if ($user->diplome && Storage::disk('public')->exists($user->diplome)) {
+                Storage::disk('public')->delete($user->diplome);
+            }
+            $path = $request->file('diplome')->store('diplome', 'public');
+            $user->diplome = $path;
+        }
+
+        if ($request->hasFile('photo')) {
+            // Supprimer l'ancienne photo si existe
+            if ($user->photo && Storage::disk('public')->exists($user->photo)) {
+                Storage::disk('public')->delete($user->photo);
+            }
+            $path = $request->file('photo')->store('profile', 'public');
+            $user->photo = $path;
+        }
+
+        $user->save();
+
+        return redirect()->route('compte', ['id' => $user->id])->with('success', 'Vos informations ont été complétées avec succès.');
     }
 }

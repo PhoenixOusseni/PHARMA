@@ -18,11 +18,9 @@
                                 <div class="team-member d-flex align-items-start">
                                     <div class="pic">
                                         @if ($item->User->photo)
-                                            <img src="{{ asset('storage/' . $item->User->photo) }}" class="img-fluid"
-                                                alt="">
+                                            <img src="{{ asset('storage/' . $item->User->photo) }}" class="img-fluid" alt="">
                                         @else
-                                            <img src="{{ asset('assets/img/avatar.png') }}" class="img-fluid"
-                                                alt="">
+                                            <img src="{{ asset('assets/img/avatar.png') }}" class="img-fluid" alt="">
                                         @endif
                                     </div>
                                     <div class="member-info">
@@ -30,8 +28,7 @@
                                         <p>Période : <strong class="badge bg-danger">{{ $item->Annee->annee }}</strong></p>
                                         <p>Mode paiement : <strong>{{ $item->mode }}</strong></p>
                                         <p>Date paiement : <strong>{{ $item->date }}</strong></p>
-                                        <a href="{{ url('impression/print_cotisation/' . $item->id) }}" class="mt-3"
-                                            target="_blank">
+                                        <a href="{{ url('impression/print_cotisation/' . $item->id) }}" class="mt-3" target="_blank">
                                             <i class="fas fa-print fa-fw text-success me-2"></i>
                                             Imprimer mon reçu
                                         </a>

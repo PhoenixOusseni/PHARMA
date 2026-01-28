@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('Layout.style')
+    @include('layout.style')
     <style>
         .step {
             display: none;
@@ -110,23 +110,26 @@
 
     @include('require.header')
 
-    <main class="container main py-4" style="background-color: #FFFF; !important;">
+    @yield('caroussel')
+
+    <main class="main" style="display: block !important; visibility: visible !important; opacity: 1 !important; background-color: #ffffff;">
         @yield('content')
-        @if (session('success') || session('error'))
-            <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
-                <div class="toast align-items-center text-white {{ session('success') ? 'bg-success' : 'bg-danger' }} border-0 show"
-                    role="alert" aria-live="assertive" aria-atomic="true" id="statusToast">
-                    <div class="d-flex">
-                        <div class="toast-body">
-                            {{ session('success') ?? session('error') }}
-                        </div>
-                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
+    </main>
+
+    @if (session('success') || session('error'))
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+            <div class="toast align-items-center text-white {{ session('success') ? 'bg-success' : 'bg-danger' }} border-0 show"
+                role="alert" aria-live="assertive" aria-atomic="true" id="statusToast">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ session('success') ?? session('error') }}
                     </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
             </div>
-        @endif
-    </main>
+        </div>
+    @endif
 
     @include('require.footer')
     <!-- Scroll Top -->
