@@ -135,6 +135,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -160,7 +161,8 @@
             font-size: 14px;
         }
 
-        .form-control, .form-select {
+        .form-control,
+        .form-select {
             border-radius: 5px;
             border: 1px solid #ddd;
             padding: 12px;
@@ -168,7 +170,8 @@
             transition: all 0.3s ease;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus,
+        .form-select:focus {
             border-color: #28a745;
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
         }
@@ -262,10 +265,6 @@
                     </div>
                     <div class="step-item flex-fill" id="step-nav-3">
                         <div class="step-circle">3</div>
-                        <small class="step-label">Diplôme</small>
-                    </div>
-                    <div class="step-item flex-fill" id="step-nav-4">
-                        <div class="step-circle">4</div>
                         <small class="step-label">Résumé</small>
                     </div>
                 </div>
@@ -273,22 +272,25 @@
                 <!-- Barre de progression -->
                 <div class="mb-4">
                     <div class="progress" style="height: 25px; border-radius: 5px;">
-                        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 25%; background: linear-gradient(135deg, #218838 0%, #28a745 100%);"
-                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                            <span style="font-weight: 600;">Étape 1 / 4</span>
+                        <div id="progress-bar" class="progress-bar" role="progressbar"
+                            style="width: 33%; background: linear-gradient(135deg, #218838 0%, #28a745 100%);"
+                            aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+                            <span style="font-weight: 600;">Étape 1 / 3</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Formulaire -->
-                <form method="POST" action="{{ route('complete_info_post', auth()->user()->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('complete_info_post', auth()->user()->id) }}"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <!-- Étape 1 -->
                     <div id="step-1" class="step active">
                         <div class="alert alert-info" style="border-radius: 5px; border-left: 4px solid #28a745;">
-                            <i class="bi bi-info-circle"></i> <strong>Information:</strong> Les champs avec étoile (<span class="text-danger">*</span>) sont obligatoires.
+                            <i class="bi bi-info-circle"></i> <strong>Information:</strong> Les champs avec étoile (<span
+                                class="text-danger">*</span>) sont obligatoires.
                         </div>
 
                         <div class="section-title">
@@ -298,13 +300,100 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email<span class="text-danger">*</span></label>
-                                    <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" required>
+                                    <input type="email" name="email" class="form-control"
+                                        value="{{ auth()->user()->email }}" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Téléphone <span class="text-danger">*</span></label>
-                                    <input type="text" id="telephone" name="telephone" class="form-control" value="{{ auth()->user()->telephone }}" required
-                                        oninput="validatePhone()">
+                                    <input type="text" id="telephone" name="telephone" class="form-control"
+                                        value="{{ auth()->user()->telephone }}" required oninput="validatePhone()">
                                     <div class="invalid-feedback">Veuillez entrer un numéro valide (8 à 15 chiffres).</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Mot de passe <span class="text-danger">*</span></label>
+                                    <input type="password" id="password" name="password" class="form-control" required>
+                                    <div class="invalid-feedback">Veuillez entrer un mot de passe valide.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Confirmer le mot de passe <span
+                                            class="text-danger">*</span></label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
+                                        class="form-control" required>
+                                    <div class="invalid-feedback">Veuillez confirmer votre mot de passe.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-title">
+                            <i class="bi bi-person"></i>Identité
+                        </div>
+                        <div class="info-section">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nom<span class="text-danger">*</span></label>
+                                    <input type="text" name="nom" class="form-control"
+                                        value="{{ auth()->user()->nom }}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Prénom(s)<span class="text-danger">*</span></label>
+                                    <input type="text" name="prenom" class="form-control"
+                                        value="{{ auth()->user()->prenom }}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nom de jeune fille</label>
+                                    <input type="text" name="nom_jeune_fille" class="form-control"
+                                        value="{{ auth()->user()->nom_jeune_fille }}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Date de naissance <span class="text-danger">*</span></label>
+                                    <input type="date" id="dateNaissance" name="date_naiss" class="form-control"
+                                        value="{{ auth()->user()->date_naiss }}" required>
+                                    <div id="dateNaissanceError" style="color:red; display:none; margin-top:5px;">
+                                        Vous devez avoir au moins 25 ans.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Lieu de naissance<span class="text-danger">*</span></label>
+                                    <input type="text" name="lieu_naiss" class="form-control"
+                                        value="{{ auth()->user()->lieu_naiss }}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nationalité<span class="text-danger">*</span></label>
+                                    <input type="text" name="nationalite" class="form-control"
+                                        value="{{ auth()->user()->nationalite }}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Situation Matrimoniale <span
+                                            class="text-danger">*</span></label><br>
+                                    <div class="radio-group" style="margin-top: 10px;">
+                                        <label class="radio-option">
+                                            Marié
+                                            <input type="radio" name="situation_matrimoniale" value="Marié"
+                                                {{ auth()->user()->situation_matrimoniale == 'Marié' ? 'checked' : '' }}>
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label class="radio-option">
+                                            Veuf(ve)
+                                            <input type="radio" name="situation_matrimoniale" value="Veuf(ve)"
+                                                {{ auth()->user()->situation_matrimoniale == 'Veuf(ve)' ? 'checked' : '' }}>
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label class="radio-option">
+                                            Célibataire
+                                            <input type="radio" name="situation_matrimoniale" value="Célibataire"
+                                                {{ auth()->user()->situation_matrimoniale == 'Célibataire' ? 'checked' : '' }}>
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label class="radio-option">
+                                            Divorcé(e)
+                                            <input type="radio" name="situation_matrimoniale" value="Divorcé(e)"
+                                                {{ auth()->user()->situation_matrimoniale == 'Divorcé(e)' ? 'checked' : '' }}>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -316,110 +405,48 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Région ordinale<span class="text-danger">*</span></label>
-                            <select name="region_ordinal_id" id="region_ordinale" class="form-select" required>
-                                <option value="" disabled>Sélectionner une région ordinale</option>
-                                @foreach (App\Models\RegionOrdinal::all() as $item)
-                                    <option value="{{ $item->id }}" {{ auth()->user()->region_ordinal_id == $item->id ? 'selected' : '' }}>
-                                        {{ $item->libelle }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label>Région<span class="text-danger">*</span></label>
-                            <select name="region_id" id="region" class="form-select" required>
-                                <option value="" disabled>Sélectionner une région</option>
-                                @if(auth()->user()->region_id)
-                                    <option value="{{ auth()->user()->region_id }}" selected>
-                                        {{ auth()->user()->Region->libelle ?? '' }}
-                                    </option>
-                                @endif
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label>Province<span class="text-danger">*</span></label>
-                            <select name="province_id" id="province" class="form-select" required>
-                                <option value="" disabled>Sélectionner une province</option>
-                                @if(auth()->user()->province_id)
-                                    <option value="{{ auth()->user()->province_id }}" selected>
-                                        {{ auth()->user()->Province->libelle ?? '' }}
-                                    </option>
-                                @endif
-                            </select>
-                        </div>
+                                    <select name="region_ordinal_id" id="region_ordinale" class="form-select" required>
+                                        <option value="" disabled>Sélectionner une région ordinale</option>
+                                        @foreach (App\Models\RegionOrdinal::all() as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ auth()->user()->region_ordinal_id == $item->id ? 'selected' : '' }}>
+                                                {{ $item->libelle }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Région<span class="text-danger">*</span></label>
+                                    <select name="region_id" id="region" class="form-select" required>
+                                        <option value="" disabled>Sélectionner une région</option>
+                                        @if (auth()->user()->region_id)
+                                            <option value="{{ auth()->user()->region_id }}" selected>
+                                                {{ auth()->user()->Region->libelle ?? '' }}
+                                            </option>
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label>Province<span class="text-danger">*</span></label>
+                                    <select name="province_id" id="province" class="form-select" required>
+                                        <option value="" disabled>Sélectionner une province</option>
+                                        @if (auth()->user()->province_id)
+                                            <option value="{{ auth()->user()->province_id }}" selected>
+                                                {{ auth()->user()->Province->libelle ?? '' }}
+                                            </option>
+                                        @endif
+                                    </select>
+                                </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Ville<span class="text-danger">*</span></label>
                                     <select name="commune_id" id="commune" class="form-select" required>
                                         <option value="" disabled>Sélectionner une ville</option>
-                                        @if(auth()->user()->commune_id)
+                                        @if (auth()->user()->commune_id)
                                             <option value="{{ auth()->user()->commune_id }}" selected>
                                                 {{ auth()->user()->Commune->libelle ?? '' }}
                                             </option>
                                         @endif
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="section-title">
-                            <i class="bi bi-person"></i> Identité
-                        </div>
-                        <div class="info-section">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Nom<span class="text-danger">*</span></label>
-                                    <input type="text" name="nom" class="form-control" value="{{ auth()->user()->nom }}" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Prénom(s)<span class="text-danger">*</span></label>
-                                    <input type="text" name="prenom" class="form-control" value="{{ auth()->user()->prenom }}" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Nom de jeune fille</label>
-                                    <input type="text" name="nom_jeune_fille" class="form-control" value="{{ auth()->user()->nom_jeune_fille }}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Date de naissance <span class="text-danger">*</span></label>
-                                    <input type="date" id="dateNaissance" name="date_naiss" class="form-control" value="{{ auth()->user()->date_naiss }}" required>
-                                    <div id="dateNaissanceError" style="color:red; display:none; margin-top:5px;">
-                                        Vous devez avoir au moins 25 ans.
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Lieu de naissance<span class="text-danger">*</span></label>
-                                    <input type="text" name="lieu_naiss" class="form-control" value="{{ auth()->user()->lieu_naiss }}" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Nationalité<span class="text-danger">*</span></label>
-                                    <input type="text" name="nationalite" class="form-control" value="{{ auth()->user()->nationalite }}" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Situation Matrimoniale <span class="text-danger">*</span></label><br>
-                                    <div class="radio-group" style="margin-top: 10px;">
-                            <label class="radio-option">
-                                Marié
-                                <input type="radio" name="situation_matrimoniale" value="Marié" {{ auth()->user()->situation_matrimoniale == 'Marié' ? 'checked' : '' }}>
-                                <span class="checkmark"></span>
-                            </label>
-
-                            <label class="radio-option">
-                                Veuf(ve)
-                                <input type="radio" name="situation_matrimoniale" value="Veuf(ve)" {{ auth()->user()->situation_matrimoniale == 'Veuf(ve)' ? 'checked' : '' }}>
-                                <span class="checkmark"></span>
-                            </label>
-
-                            <label class="radio-option">
-                                Célibataire
-                                <input type="radio" name="situation_matrimoniale" value="Célibataire" {{ auth()->user()->situation_matrimoniale == 'Célibataire' ? 'checked' : '' }}>
-                                <span class="checkmark"></span>
-                            </label>
-
-                                        <label class="radio-option">
-                                            Divorcé(e)
-                                            <input type="radio" name="situation_matrimoniale" value="Divorcé(e)" {{ auth()->user()->situation_matrimoniale == 'Divorcé(e)' ? 'checked' : '' }}>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -440,11 +467,13 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Adresse Permanente</label>
-                                    <input type="text" name="adresse" class="form-control" value="{{ auth()->user()->adresse }}">
+                                    <input type="text" name="adresse" class="form-control"
+                                        value="{{ auth()->user()->adresse }}">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Domicile</label>
-                                    <input type="text" name="domicile" class="form-control" value="{{ auth()->user()->domicile }}">
+                                    <input type="text" name="domicile" class="form-control"
+                                        value="{{ auth()->user()->domicile }}">
                                 </div>
                             </div>
                         </div>
@@ -455,22 +484,28 @@
                         <div class="info-section">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">N° Matricule <small class="text-muted">(Pour les fonctionnaires)</small></label>
-                                    <input type="text" name="matricule" class="form-control" value="{{ auth()->user()->matricule }}">
+                                    <label class="form-label">N° Matricule <small class="text-muted">(Pour les
+                                            fonctionnaires)</small></label>
+                                    <input type="text" name="matricule" class="form-control"
+                                        value="{{ auth()->user()->matricule }}">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">N° RCCM</label>
-                                    <input type="text" name="num_rccm" class="form-control" value="{{ auth()->user()->num_rccm }}">
+                                    <input type="text" name="num_rccm" class="form-control"
+                                        value="{{ auth()->user()->num_rccm }}">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Lieu d'exercice</label>
-                                    <input type="text" name="lieu_exercice" class="form-control" value="{{ auth()->user()->lieu_exercice }}">
+                                    <input type="text" name="lieu_exercice" class="form-control"
+                                        value="{{ auth()->user()->lieu_exercice }}">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Photo de profil <small class="text-muted">(Format: jpg, png)</small></label>
+                                    <label class="form-label">Photo de profil <small class="text-muted">(Format: jpg,
+                                            png)</small></label>
                                     <input type="file" name="photo" class="form-control" accept=".jpg,.jpeg,.png">
-                                    @if(auth()->user()->photo)
-                                        <small class="text-muted">Photo actuelle: {{ basename(auth()->user()->photo) }}</small>
+                                    @if (auth()->user()->photo)
+                                        <small class="text-muted">Photo actuelle:
+                                            {{ basename(auth()->user()->photo) }}</small>
                                     @endif
                                 </div>
                             </div>
@@ -486,79 +521,8 @@
                         </div>
                     </div>
 
-                    <!-- Étape 3 -->
+                    <!-- Étape 3 - Résumé -->
                     <div id="step-3" class="step">
-                        <div class="section-title">
-                            <i class="bi bi-mortarboard"></i> Diplôme et formation
-                        </div>
-                        <div class="info-section">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Diplome <small class="text-muted">(En format pdf)</small></label>
-                                    <input type="file" name="diplome" class="form-control" accept=".pdf">
-                                    @if(auth()->user()->diplome)
-                                        <small class="text-muted">Diplôme actuel: {{ basename(auth()->user()->diplome) }}</small>
-                                    @endif
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Date d'obtention<span class="text-danger">*</span></label>
-                                    <input type="date" name="date_diplome" class="form-control" value="{{ auth()->user()->date_diplome }}" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Institution ayant délivré<span class="text-danger">*</span></label>
-                                    <input type="text" name="inst_delivre" class="form-control" value="{{ auth()->user()->inst_delivre }}" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Lieu de délivrance</label>
-                                    <input type="text" name="lieu_delivrance" class="form-control" value="{{ auth()->user()->lieu_delivrance }}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Section</label>
-                                    <select name="section_id" class="form-select">
-                                        <option value="">Sélectionner une section</option>
-                                        @foreach (App\Models\Section::all() as $item)
-                                            <option value="{{ $item->id }}" {{ auth()->user()->section_id == $item->id ? 'selected' : '' }}>
-                                                {{ $item->libelle }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Pièces jointes <small class="text-muted">(En format pdf)</small></label>
-                                    <input type="file" name="file" class="form-control" accept=".pdf">
-                                    @if(auth()->user()->file)
-                                        <small class="text-muted">Pièce actuelle: {{ basename(auth()->user()->file) }}</small>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="alert alert-info" style="border-radius: 5px; border-left: 4px solid #0dcaf0;">
-                            <h6><i class="bi bi-info-circle"></i> <strong>Pièces requises:</strong></h6>
-                            <ul class="mb-0 mt-2">
-                                <li>Un extrait d'acte de naissance</li>
-                                <li>Un extrait d'un casier judiciaire datant de moins de trois mois</li>
-                                <li>Une copie légalisée du diplôme de pharmacien ou l'attestation de diplôme de docteur en pharmacie</li>
-                                <li>Un certificat de nationalité</li>
-                                <li>Un certificat d'aptitude médical</li>
-                            </ul>
-                            <p class="text-danger mt-2 mb-0">
-                                <strong><i class="bi bi-exclamation-triangle"></i> Note :</strong> <em>Les pièces jointes doivent être au format PDF et ne pas dépasser 5 Mo.</em>
-                            </p>
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
-                                <i class="bi bi-arrow-left"></i> Précédent
-                            </button>
-                            <button type="button" class="btn btn-primary" onclick="nextStep(4)">
-                                Suivant <i class="bi bi-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Étape 4 - Résumé -->
-                    <div id="step-4" class="step">
                         <div class="section-title">
                             <i class="bi bi-clipboard-check"></i> Récapitulatif de vos informations
                         </div>
@@ -575,7 +539,8 @@
                                 <div class="col-md-6">
                                     <p><strong>Lieu de naissance:</strong> <span id="recap-lieu_naiss"></span></p>
                                     <p><strong>Nationalité:</strong> <span id="recap-nationalite"></span></p>
-                                    <p><strong>Situation matrimoniale:</strong> <span id="recap-situation_matrimoniale"></span></p>
+                                    <p><strong>Situation matrimoniale:</strong> <span
+                                            id="recap-situation_matrimoniale"></span></p>
                                 </div>
                             </div>
                         </div>
@@ -617,14 +582,16 @@
                         </div>
 
                         <div class="alert alert-warning" style="border-radius: 5px; border-left: 4px solid #ffc107;">
-                            <i class="bi bi-exclamation-triangle"></i> <strong>Attention:</strong> Veuillez vérifier les informations ci-dessus avant de soumettre.
+                            <i class="bi bi-exclamation-triangle"></i> <strong>Attention:</strong> Veuillez vérifier les
+                            informations ci-dessus avant de soumettre.
                         </div>
                         <div class="alert alert-success" style="border-radius: 5px; border-left: 4px solid #198754;">
-                            <i class="bi bi-check-circle"></i> <strong>Note:</strong> Vos informations seront mises à jour dans votre profil.
+                            <i class="bi bi-check-circle"></i> <strong>Note:</strong> Vos informations seront mises à jour
+                            dans votre profil.
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-secondary" onclick="prevStep(3)">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">
                                 <i class="bi bi-arrow-left"></i> Précédent
                             </button>
                             <button type="submit" class="btn btn-primary">
@@ -700,7 +667,7 @@
 
     <script>
         function updateStepNav(step) {
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= 3; i++) {
                 const el = document.getElementById('step-nav-' + i);
                 if (el) {
                     el.classList.toggle('active', i === step);
@@ -710,8 +677,8 @@
 
         function updateProgressBar(step) {
             const bar = document.getElementById('progress-bar');
-            const labels = ['Étape 1 / 4', 'Étape 2 / 4', 'Étape 3 / 4', 'Étape 4 / 4'];
-            const widths = ['25%', '50%', '75%', '100%'];
+            const labels = ['Étape 1 / 3', 'Étape 2 / 3', 'Étape 3 / 3'];
+            const widths = ['33%', '66%', '100%'];
             bar.style.width = widths[step - 1];
             bar.innerText = labels[step - 1];
         }
@@ -753,8 +720,8 @@
 
             if (!valid) return;
 
-            // Récapitulatif quand on arrive à l'étape 4
-            if (step === 4) {
+            // Récapitulatif quand on arrive à l'étape 3
+            if (step === 3) {
                 const getVal = (selector, fallback = 'Non renseigné') => {
                     const el = document.querySelector(selector);
                     return el?.value?.trim() || fallback;
@@ -799,7 +766,8 @@
         function validatePhone() {
             const telInput = document.getElementById("telephone");
             const telValue = telInput.value.trim();
-            const telRegex = /^[0-9]{8,15}$/;
+            // Accepte les formats: +243123456789, +243 12 345 67 89, 0123456789, etc.
+            const telRegex = /^[\+]?[0-9\s\-()]{8,20}$/;
 
             if (!telRegex.test(telValue)) {
                 telInput.classList.add("is-invalid");
@@ -870,7 +838,8 @@
                         province.innerHTML = '<option value="">Sélectionner une province</option>';
                         commune.innerHTML = '<option value="">Sélectionner une commune</option>';
                         data.forEach(item => {
-                            region.innerHTML += `<option value="${item.id}">${item.libelle}</option>`;
+                            region.innerHTML +=
+                                `<option value="${item.id}">${item.libelle}</option>`;
                         });
                     });
             });
@@ -882,7 +851,8 @@
                         province.innerHTML = '<option value="">Sélectionner une province</option>';
                         commune.innerHTML = '<option value="">Sélectionner une commune</option>';
                         data.forEach(item => {
-                            province.innerHTML += `<option value="${item.id}">${item.libelle}</option>`;
+                            province.innerHTML +=
+                                `<option value="${item.id}">${item.libelle}</option>`;
                         });
                     });
             });
@@ -893,7 +863,8 @@
                     .then(data => {
                         commune.innerHTML = '<option value="">Sélectionner une commune</option>';
                         data.forEach(item => {
-                            commune.innerHTML += `<option value="${item.id}">${item.libelle}</option>`;
+                            commune.innerHTML +=
+                                `<option value="${item.id}">${item.libelle}</option>`;
                         });
                     });
             });

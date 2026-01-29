@@ -213,6 +213,20 @@ class AuthController extends Controller
     public function complete_info_post(Request $request, $id) {
         $user = User::findOrFail($id);
 
+        // Validation des champs
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'telephone' => 'required|string|min:8|max:15',
+            'date_naiss' => 'required|date',
+        ], [
+            'password.required' => 'Le mot de passe est obligatoire.',
+            'password.min' => 'Le mot de passe doit contenir au moins 8 caractères.',
+            'password.confirmed' => 'Les mots de passe ne correspondent pas.',
+            'password_confirmation.required' => 'La confirmation du mot de passe est obligatoire.',
+        ]);
+
         // Calculer l'âge à partir de la date de naissance
         if ($request->date_naiss) {
             $date_naiss = Carbon::parse($request->date_naiss);
@@ -223,17 +237,13 @@ class AuthController extends Controller
             }
         }
 
-        // Vérifier que la date_diplome ne dépasse pas la date d'aujourd'hui
-        if ($request->date_diplome && Carbon::parse($request->date_diplome)->gt(Carbon::today())) {
-            return redirect()->back()->with('error', 'La date d\'obtention du diplôme ne peut pas être postérieure à aujourd\'hui.');
-        }
-
         // Mise à jour des informations personnelles
         $user->nom = $request->nom;
         $user->prenom = $request->prenom;
         $user->nom_jeune_fille = $request->nom_jeune_fille;
         $user->matricule = $request->matricule;
         $user->email = $request->email;
+        $user->password = Hash::make($request->password); // Mettre à jour le mot de passe
         $user->telephone = $request->telephone;
         $user->date_naiss = $request->date_naiss;
         $user->lieu_naiss = $request->lieu_naiss;
@@ -251,11 +261,6 @@ class AuthController extends Controller
         $user->section_id = $request->section_id;
         $user->province_id = $request->province_id;
 
-        // Mise à jour du diplôme
-        $user->date_diplome = $request->date_diplome;
-        $user->inst_delivre = $request->inst_delivre;
-        $user->lieu_delivrance = $request->lieu_delivrance;
-
         // Gestion des fichiers uploadés
         if ($request->hasFile('file')) {
             // Supprimer l'ancien fichier si existe
@@ -264,15 +269,6 @@ class AuthController extends Controller
             }
             $path = $request->file('file')->store('pieces_jointes', 'public');
             $user->file = $path;
-        }
-
-        if ($request->hasFile('diplome')) {
-            // Supprimer l'ancien diplôme si existe
-            if ($user->diplome && Storage::disk('public')->exists($user->diplome)) {
-                Storage::disk('public')->delete($user->diplome);
-            }
-            $path = $request->file('diplome')->store('diplome', 'public');
-            $user->diplome = $path;
         }
 
         if ($request->hasFile('photo')) {

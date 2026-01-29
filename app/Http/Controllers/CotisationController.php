@@ -82,7 +82,6 @@ class CotisationController extends Controller
         //     'mode' => 'required|string|max:255',
         //     'montant' => 'required|numeric|min:0',
         //     'observation' => 'nullable|string|max:1000',
-
         // ]);
 
         // Create a new cotisation record
@@ -100,7 +99,7 @@ class CotisationController extends Controller
             'date' => $request->date,
             'annee_id' => $request->annee_id,
             'mode' => $request->mode,
-            'montant' => $request->montant_cotisation,
+            'montant' => $request->montant,
             'desc' => $request->desc,
         ]);
 

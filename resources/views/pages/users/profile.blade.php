@@ -52,23 +52,23 @@
                                 </div>
                                 <div class="info-item">
                                     <strong>Situation matrimoniale</strong>
-                                    <span>{{ $finds->situation_matrimoniale }}</span>
+                                    <span>{{ $finds->situation_matrimoniale ?? 'Non spécifié' }}</span>
                                 </div>
                                 <div class="info-item">
                                     <strong>Date de naissance</strong>
-                                    <span>{{ $finds->date_naiss }}</span>
+                                    <span>{{ $finds->date_naiss ?? 'Non spécifié' }}</span>
                                 </div>
                                 <div class="info-item">
                                     <strong>Lieu de naissance</strong>
-                                    <span>{{ $finds->lieu_naiss }}</span>
+                                    <span>{{ $finds->lieu_naiss ?? 'Non spécifié' }}</span>
                                 </div>
                                 <div class="info-item">
                                     <strong>Nationalité</strong>
-                                    <span>{{ $finds->nationalite }}</span>
+                                    <span>{{ $finds->nationalite ?? 'Non spécifié' }}</span>
                                 </div>
                                 <div class="info-item">
                                     <strong>Section</strong>
-                                    <span>{{ $finds->Section->libelle }}</span>
+                                    <span>{{ $finds->Section->libelle ?? 'Non spécifié' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,6 @@
                                     <i class="bi bi-plus-circle"></i> Ajouter
                                 </a>
                             </div>
-                            <table class="table table-modern">
                             <table class="table table-modern">
                                 <thead>
                                     <tr>
